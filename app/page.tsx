@@ -20,9 +20,9 @@ export default function Home() {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
 
         {/* Hero Area with Visualizer */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 min-h-[60vh] md:min-h-[70vh] items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center pt-8">
           <HeroSection />
-          <div className="hidden lg:block h-[500px]">
+          <div className="h-[350px] sm:h-[400px] lg:h-[500px] w-full">
             <AutomationVisualizer />
           </div>
         </div>
