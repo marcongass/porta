@@ -18,7 +18,7 @@ export const ExperienceSection = () => {
                     </div>
                 </div>
 
-                <div className="relative border-l border-white/10 ml-3 md:ml-6 space-y-12 pl-8 md:pl-12 pb-4">
+                <div className="relative border-l border-white/10 ml-3 md:ml-6 space-y-12 pl-6 md:pl-12 pb-4">
                     {PORTFOLIO_DATA.experience.map((exp, index) => (
                         <motion.div
                             key={exp.company}
@@ -29,14 +29,14 @@ export const ExperienceSection = () => {
                             className="relative"
                         >
                             {/* Timeline Dot */}
-                            <div className="absolute -left-[41px] md:-left-[59px] top-0 p-1 bg-black rounded-full border border-white/10">
+                            <div className="absolute -left-[33px] md:-left-[59px] top-0 p-1 bg-black rounded-full border border-white/10">
                                 <div className="w-3 h-3 rounded-full bg-accent-blue animate-pulse shadow-[0_0_10px_rgba(0,112,243,0.5)]" />
                             </div>
 
-                            <div className="glass-panel p-6 md:p-8 rounded-2xl relative group hover:border-accent-blue/30 transition-colors">
-                                <div className="flex flex-col md:flex-row gap-6 justify-between items-start mb-6">
+                            <div className="glass-panel p-5 md:p-8 rounded-2xl relative group hover:border-accent-blue/30 transition-colors">
+                                <div className="flex flex-col md:flex-row gap-4 md:gap-6 justify-between items-start mb-6">
                                     <div className="space-y-1">
-                                        <h3 className="text-2xl font-bold text-white group-hover:text-accent-blue transition-colors">
+                                        <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-accent-blue transition-colors">
                                             {exp.company}
                                         </h3>
                                         <div className="text-lg text-accent-cyan font-medium flex items-center gap-2">

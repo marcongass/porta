@@ -8,17 +8,17 @@ export const ProjectCarousel = () => {
     return (
         <section className="py-10 relative z-10 overflow-hidden">
             {/* Section Header */}
-            <div className="container mx-auto px-6 mb-8">
-                <div className="flex items-end justify-between border-b border-white/10 pb-4">
+            <div className="container mx-auto px-4 sm:px-6 mb-8">
+                <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-4 gap-4">
                     <div className="flex gap-4 items-center">
                         <div className="p-3 bg-accent-blue/10 rounded-lg border border-accent-blue/20">
-                            <Cpu className="w-6 h-6 text-accent-blue" />
+                            <Cpu className="w-5 h-5 md:w-6 md:h-6 text-accent-blue" />
                         </div>
                         <div>
-                            <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-2">
-                                Deployed Systems <span className="text-accent-cyan text-xs font-mono py-0.5 px-2 bg-accent-cyan/10 rounded border border-accent-cyan/20">v2.0</span>
+                            <h2 className="text-xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-2">
+                                Deployed Systems <span className="text-[10px] md:text-xs font-mono py-0.5 px-2 bg-accent-cyan/10 rounded border border-accent-cyan/20 text-accent-cyan">v2.0</span>
                             </h2>
-                            <p className="text-gray-400 text-sm md:text-base mt-1">Production environments & research labs</p>
+                            <p className="text-gray-400 text-xs md:text-base mt-1">Production environments & research labs</p>
                         </div>
                     </div>
 
@@ -30,8 +30,8 @@ export const ProjectCarousel = () => {
             </div>
 
             {/* Grid Container - 4 Columns on XL */}
-            <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            <div className="container mx-auto px-4 sm:px-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6">
                     {PORTFOLIO_DATA.projects.map((project, index) => (
                         <motion.div
                             key={project.title}

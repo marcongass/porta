@@ -17,10 +17,10 @@ export default function Home() {
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-cyan/5 blur-[120px] rounded-full animate-pulse delay-1000" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
 
         {/* Hero Area with Visualizer */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 min-h-[60vh] items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 min-h-[60vh] md:min-h-[70vh] items-center">
           <HeroSection />
           <div className="hidden lg:block h-[500px]">
             <AutomationVisualizer />
