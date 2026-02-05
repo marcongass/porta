@@ -25,7 +25,7 @@ export const AutomationVisualizer = () => {
     }, [isInView]);
 
     return (
-        <div ref={containerRef} className="w-full h-full min-h-[400px] relative flex items-center justify-center overflow-hidden">
+        <div ref={containerRef} className="w-full h-full relative flex items-center justify-center overflow-hidden">
             {/* Ambient Background Glow */}
             <div className="absolute inset-0 bg-accent-blue/5 blur-[100px] rounded-full animate-pulse" />
 
