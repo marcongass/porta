@@ -22,7 +22,7 @@ export const CertificationsGallery = () => {
                 <div className="p-2 bg-accent-cyan/10 rounded-lg border border-accent-cyan/20">
                     <Award className="w-6 h-6 text-accent-cyan" />
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Certified Architecture</h2>
+                <h2 className="fluid-h2 font-bold tracking-tight text-white">Certified Architecture</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

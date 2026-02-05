@@ -1,24 +1,38 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useReducedMotion } from "framer-motion";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
-import { Terminal, Cpu, MapPin, Linkedin, Mail, Phone } from "lucide-react";
+import { Terminal, MapPin, Linkedin, Mail, Phone } from "lucide-react";
 
 export const HeroSection = () => {
+    const shouldReduceMotion = useReducedMotion();
+
     const container: Variants = {
         hidden: { opacity: 0 },
         show: {
             opacity: 1,
             transition: {
                 staggerChildren: 0.1,
-                delayChildren: 0.3,
+                delayChildren: 0.2,
             }
         }
     };
 
     const item: Variants = {
-        hidden: { opacity: 0, y: 20, filter: "blur(10px)" },
-        show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.8, ease: "easeOut" } }
+        hidden: {
+            opacity: 0,
+            y: shouldReduceMotion ? 0 : 20,
+            filter: shouldReduceMotion ? "none" : "blur(10px)"
+        },
+        show: {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            transition: {
+                duration: 0.8,
+                ease: [0.22, 1, 0.36, 1]
+            }
+        }
     };
 
     return (
@@ -27,12 +41,11 @@ export const HeroSection = () => {
                 variants={container}
                 initial="hidden"
                 animate="show"
-                className="space-y-6 max-w-4xl text-left lg:text-left"
+                className="space-y-6 max-w-4xl text-left"
             >
                 <motion.div
                     variants={item}
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-blue/10 border border-accent-blue/20 text-accent-blue text-xs md:text-sm font-medium"
-                    whileHover={{ scale: 1.05 }}
                 >
                     <span className="relative flex h-2 w-2">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-blue opacity-75"></span>
@@ -43,7 +56,7 @@ export const HeroSection = () => {
 
                 <motion.h1
                     variants={item}
-                    className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tighter leading-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 animate-gradient-x"
+                    className="fluid-h1 font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500 animate-gradient-x"
                     style={{ backgroundSize: "200% auto" }}
                 >
                     {PORTFOLIO_DATA.hero.headline}
@@ -60,8 +73,8 @@ export const HeroSection = () => {
                         {PORTFOLIO_DATA.hero.contact.location}
                     </div>
                     {PORTFOLIO_DATA.hero.contact.linkedin && (
-                        <a href={PORTFOLIO_DATA.hero.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent-cyan transition-colors">
-                            <Linkedin className="w-4 h-4 text-accent-blue" />
+                        <a href={PORTFOLIO_DATA.hero.contact.linkedin} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-accent-cyan transition-colors group">
+                            <Linkedin className="w-4 h-4 text-accent-blue group-hover:text-accent-cyan" />
                             LinkedIn
                         </a>
                     )}
@@ -76,17 +89,23 @@ export const HeroSection = () => {
                 </motion.div>
 
                 <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 pt-8">
-                    <a
+                    <motion.a
                         href="/Currículum.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-8 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors flex items-center justify-center gap-2"
+                        whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="px-8 py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-all flex items-center justify-center gap-2 shadow-lg shadow-white/5"
                     >
                         Download CV
-                    </a>
-                    <button className="px-8 py-3 glass-panel rounded-lg hover:bg-white/10 transition-colors w-full sm:w-auto">
+                    </motion.a>
+                    <motion.button
+                        whileHover={shouldReduceMotion ? {} : { scale: 1.02, backgroundColor: "rgba(255,255,255,0.05)" }}
+                        whileTap={{ scale: 0.98 }}
+                        className="px-8 py-3 glass-panel rounded-lg transition-all w-full sm:w-auto"
+                    >
                         View Projects
-                    </button>
+                    </motion.button>
                 </motion.div>
             </motion.div>
         </section>

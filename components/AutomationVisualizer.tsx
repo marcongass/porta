@@ -1,10 +1,14 @@
 "use client";
 
-import { motion, useTime, useTransform } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useTime, useTransform, useInView } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
 
 export const AutomationVisualizer = () => {
+    const containerRef = useRef(null);
+    const isInView = useInView(containerRef, { amount: 0.1 });
     const time = useTime();
+
+    // Smooth rotations only when in view
     const rotate = useTransform(time, [0, 10000], [0, 360], { clamp: false });
     const rotateReverse = useTransform(time, [0, 10000], [360, 0], { clamp: false });
 
@@ -12,14 +16,16 @@ export const AutomationVisualizer = () => {
     const [packets, setPackets] = useState<number[]>([]);
 
     useEffect(() => {
+        if (!isInView) return;
+
         const interval = setInterval(() => {
-            setPackets(prev => [...prev.slice(-5), Date.now()]);
-        }, 2000);
+            setPackets(prev => [...prev.slice(-3), Date.now()]);
+        }, 3000); // Slower frequency for better performance
         return () => clearInterval(interval);
-    }, []);
+    }, [isInView]);
 
     return (
-        <div className="w-full h-full min-h-[400px] relative flex items-center justify-center overflow-hidden">
+        <div ref={containerRef} className="w-full h-full min-h-[400px] relative flex items-center justify-center overflow-hidden">
             {/* Ambient Background Glow */}
             <div className="absolute inset-0 bg-accent-blue/5 blur-[100px] rounded-full animate-pulse" />
 

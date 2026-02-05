@@ -15,10 +15,10 @@ export const ProjectCarousel = () => {
                             <Cpu className="w-5 h-5 md:w-6 md:h-6 text-accent-blue" />
                         </div>
                         <div>
-                            <h2 className="text-xl md:text-3xl font-bold text-white tracking-tight flex items-center gap-2">
+                            <h2 className="fluid-h2 font-bold text-white tracking-tight flex items-center gap-2">
                                 Deployed Systems <span className="text-[10px] md:text-xs font-mono py-0.5 px-2 bg-accent-cyan/10 rounded border border-accent-cyan/20 text-accent-cyan">v2.0</span>
                             </h2>
-                            <p className="text-gray-400 text-xs md:text-base mt-1">Production environments & research labs</p>
+                            <p className="text-gray-400 text-xs md:text-sm mt-1">Production environments & research labs</p>
                         </div>
                     </div>
 

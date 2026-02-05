@@ -13,8 +13,8 @@ export const ExperienceSection = () => {
                         <Briefcase className="w-6 h-6 text-accent-blue" />
                     </div>
                     <div>
-                        <h2 className="text-3xl font-bold tracking-tight text-white">Build History</h2>
-                        <p className="text-gray-400 text-sm mt-1">Professional timeline & key milestones</p>
+                        <h2 className="fluid-h2 font-bold tracking-tight text-white line-clamp-1">Build History</h2>
+                        <p className="text-gray-400 text-xs md:text-sm mt-1">Professional timeline & key milestones</p>
                     </div>
                 </div>
 

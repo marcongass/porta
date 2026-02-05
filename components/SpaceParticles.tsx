@@ -16,32 +16,38 @@ export const SpaceParticles = () => {
         let animationFrameId: number;
 
         const resize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+            ctx.scale(dpr, dpr);
+            canvas.style.width = `${window.innerWidth}px`;
+            canvas.style.height = `${window.innerHeight}px`;
             initParticles();
         };
 
         const initParticles = () => {
             particles = [];
-            const particleCount = Math.floor((window.innerWidth * window.innerHeight) / 15000);
+            const isMobile = window.innerWidth < 768;
+            const densityBase = isMobile ? 25000 : 15000;
+            const particleCount = Math.floor((window.innerWidth * window.innerHeight) / densityBase);
 
             for (let i = 0; i < particleCount; i++) {
                 particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 2 + 0.5,
-                    speed: Math.random() * 0.2 + 0.05,
-                    opacity: Math.random() * 0.5 + 0.1
+                    x: Math.random() * window.innerWidth,
+                    y: Math.random() * window.innerHeight,
+                    size: Math.random() * (isMobile ? 1.5 : 2) + 0.5,
+                    speed: Math.random() * 0.15 + 0.05,
+                    opacity: Math.random() * 0.4 + 0.1
                 });
             }
         };
 
         const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
             particles.forEach(p => {
                 p.y -= p.speed;
-                if (p.y < 0) p.y = canvas.height;
+                if (p.y < 0) p.y = window.innerHeight;
 
                 ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
                 ctx.beginPath();
@@ -52,12 +58,19 @@ export const SpaceParticles = () => {
             animationFrameId = requestAnimationFrame(animate);
         };
 
-        window.addEventListener("resize", resize);
+        let resizeTimeout: NodeJS.Timeout;
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(resize, 200);
+        };
+
+        window.addEventListener("resize", handleResize);
         resize();
         animate();
 
         return () => {
-            window.removeEventListener("resize", resize);
+            window.removeEventListener("resize", handleResize);
+            clearTimeout(resizeTimeout);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);

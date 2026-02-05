@@ -11,7 +11,7 @@ export const EducationSection = () => {
                 <div className="p-2 bg-accent-blue/10 rounded-lg border border-accent-blue/20">
                     <GraduationCap className="w-6 h-6 text-accent-blue" />
                 </div>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white">Academic Background</h2>
+                <h2 className="fluid-h2 font-bold tracking-tight text-white">Academic Background</h2>
             </div>
 
             <div className="space-y-4">
